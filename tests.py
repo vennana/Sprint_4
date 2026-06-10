@@ -1,3 +1,4 @@
+import pytest
 from main import BooksCollector
 
 class TestBooksCollector:
@@ -10,10 +11,7 @@ class TestBooksCollector:
         collector.add_new_book('Война и мир')
         assert len(collector.get_books_genre()) == 1
 
-    @pytest.mark.parametrize('name', [
-        '',  # пустая строка
-        'A' * 41  # строка длиной 41 символ
-    ])
+    @pytest.mark.parametrize('name', ['', 'A' * 41])
 
     def test_add_new_book_invalid_name_not_added(self, name):
         collector = BooksCollector()
@@ -22,7 +20,7 @@ class TestBooksCollector:
     
     def test_add_new_book_valid_name_40_chars(self):
         collector = BooksCollector()
-        name = 'A' * 40  # ровно 40 символов
+        name = 'A' * 40
         collector.add_new_book(name)
         assert name in collector.get_books_genre()
 
@@ -37,7 +35,7 @@ class TestBooksCollector:
     def test_set_book_genre_invalid_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Шерлок Холмс')
-        collector.set_book_genre('Шерлок Холмс', 'Роман')  # не входит в список genre
+        collector.set_book_genre('Шерлок Холмс', 'Роман')
         assert collector.get_book_genre('Шерлок Холмс') == ''
 
     # Проверка метода get_book_genre
@@ -115,7 +113,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Мастер и Маргарита')
         collector.add_book_in_favorites('Мастер и Маргарита')
-        collector.add_book_in_favorites('Мастер и Маргарита')  # повторное добавление
+        collector.add_book_in_favorites('Мастер и Маргарита')
         assert len(collector.get_list_of_favorites_books()) == 1
 
     # Проверка метода delete_book_from_favorites
