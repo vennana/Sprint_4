@@ -1,0 +1,5 @@
+# Pytest кэш
+.pytest_cache/
+
+# Python байт-код
+__pycache__/
